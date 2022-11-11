@@ -15,7 +15,7 @@
         android:fontFamily="@font/corben"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Guess Anmial "
+        android:text="Guess Animal "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="35dp"
