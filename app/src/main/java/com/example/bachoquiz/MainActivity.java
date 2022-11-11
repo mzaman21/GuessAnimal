@@ -3,6 +3,8 @@ package com.example.bachoquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView animal;
     RadioGroup Optionlist;
     RadioButton optionselected,animalop1,animalop2,animalop3,animalop4;
+    Button next;
 
     Integer[] animalarray={
             R.drawable.dog,
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             "Lion"
     };
     String[] currentoptionList={"","","",""};
-    int pickAnimalIndex,pickAnimalOptionIndex,optionvalue,previousoptionIndex=0,AnswerIndex,incrementor=0;
+    int pickAnimalIndex,pickAnimalOptionIndex,optionvalue,previousoptionIndex=0,AnswerIndex,incrementor=0,Questions=0;
     boolean checkduplicate;
     String Answer;
     Random randomAnimalSelector = new Random();
@@ -52,24 +55,46 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        animal = findViewById(R.id.animalpicture);
+
         animalop1= findViewById(R.id.firstoption);
         animalop2= findViewById(R.id.secondoption);
         animalop3= findViewById(R.id.thirdoption);
         animalop4= findViewById(R.id.fourthoption);
 
+        next = findViewById(R.id.nextbtn);
+        mainfunctionality();
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainfunctionality();
+            }
+        });
+
+    }
+    //all process
+    public void mainfunctionality(){
+//        if(Questions!=0){
+//            clearoptionlist();
+//        }
+        //randomly set image
         pickAnimalIndex = randomAnimalSelector.nextInt(animalarray.length);
 
-        animal = findViewById(R.id.animalpicture);
         animal.setImageResource(animalarray[pickAnimalIndex]);
+
+        //set current question answer
         Answer=animalNames[pickAnimalIndex];
 
-        //randomly set answer
+        //randomly set answer in option list
         AnswerIndex =AnswerPosition.nextInt(currentoptionList.length);
         currentoptionList[AnswerIndex] = Answer;
 
+        //randomly set other three options in options list
         while (incrementor!=4){
             optionvalue = randomAnimalOptions();
+            //handle not to place at answer position
             if(incrementor!=AnswerIndex) {
+                //handle duplication of options
                 if (checkoptions(optionvalue)) {
                     checkduplicate = true;
                     while (checkduplicate != false) {
@@ -80,30 +105,47 @@ public class MainActivity extends AppCompatActivity {
                     }
                     currentoptionList[incrementor] = animalNames[optionvalue];
                     checkduplicate = true;
-                } else {
+                }
+                else {
                     currentoptionList[incrementor] = animalNames[optionvalue];
                 }
             }
+            //loop counter
             incrementor++;
         }
-
+        //setting options on view
         animalop1.setText(currentoptionList[0]);
         animalop2.setText(currentoptionList[1]);
         animalop3.setText(currentoptionList[2]);
         animalop4.setText(currentoptionList[3]);
+        Questions++;
+        if(Questions!=0){
+           clearoptionlist();
+        }
+        incrementor=0;
     }
+
+    //clear options
+    public  void  clearoptionlist(){
+        for(int i=0;i<currentoptionList.length;i++){
+            currentoptionList[i]="";
+        }
+    }
+    //select random animal name for options
     public int randomAnimalOptions() {
             pickAnimalOptionIndex = randomOptionSelector.nextInt(animalNames.length);
             return pickAnimalOptionIndex;
     }
+    //check weather duplicate or not
     public boolean checkoptions(int optionvalue){
         boolean checkoptionflag= false;
-
+        //loop through the current option list
         for(int i =0;i<currentoptionList.length;i++){
             if(currentoptionList[i]==animalNames[optionvalue]) {
                 checkoptionflag=true;
             }
         }
+        //return true or false
         return checkoptionflag;
     }
 
