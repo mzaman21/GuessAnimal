@@ -2,6 +2,7 @@ package com.example.bachoquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView QuestionNo,CorrectAns1,CorrectAns2,CorrectAns3,CorrectAns4,CorrectAns5,CorrectAns6,CorrectAns7,CorrectAns8,CorrectAns9,CorrectAns10;
+    TextView QuestionNo;
     ImageView animal;
     RadioGroup Optionlist;
     RadioButton optionselected,animalop1,animalop2,animalop3,animalop4;
@@ -77,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
                 mainfunctionality();
             }
         });
+
+
+        Intent intent = new Intent(MainActivity.this,MainActivity2.class);
+        intent.putExtra("Selected_Option", selectedOption);
+        intent.putExtra("Answer_list",Answerlist);
+        this.startActivity(intent);
 
     }
     //all process
