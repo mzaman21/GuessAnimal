@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
 
+    //result variables
     TextView CorrectAns1,CorrectAns2,CorrectAns3,CorrectAns4,CorrectAns5,CorrectAns6,CorrectAns7,CorrectAns8,CorrectAns9,CorrectAns10
             ,MarkAns1,MarkAns2,MarkAns3,MarkAns4,MarkAns5,MarkAns6,MarkAns7,MarkAns8,MarkAns9,MarkAns10,ResultAns1,ResultAns2,ResultAns3
             ,ResultAns4,ResultAns5,ResultAns6,ResultAns7,ResultAns8,ResultAns9,ResultAns10;
@@ -21,9 +22,11 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        //getting arrays from main activity
         selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
         correctanswerarray = getIntent().getStringArrayExtra("Answer_list");
 
+        //map elements
         CorrectAns1= findViewById(R.id.A1);
         CorrectAns2= findViewById(R.id.A2);
         CorrectAns3= findViewById(R.id.A3);
@@ -57,6 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
         ResultAns9=findViewById(R.id.R9);
         ResultAns10=findViewById(R.id.R10);
 
+        //setting each options result
         CorrectAns1.setText(correctanswerarray[i]);
         MarkAns1.setText(selectedoptionsarray[i]);
         if(correctanswerarray[i].equals(selectedoptionsarray[i])){
@@ -147,6 +151,5 @@ public class MainActivity2 extends AppCompatActivity {
             ResultAns10.setText("False");
         }
         i++;
-
     }
 }
