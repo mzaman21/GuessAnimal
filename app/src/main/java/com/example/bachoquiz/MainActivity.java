@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView QuestionNo;
+    TextView QuestionNo,CorrectAns1,CorrectAns2,CorrectAns3,CorrectAns4,CorrectAns5,CorrectAns6,CorrectAns7,CorrectAns8,CorrectAns9,CorrectAns10;
     ImageView animal;
     RadioGroup Optionlist;
     RadioButton optionselected,animalop1,animalop2,animalop3,animalop4;
