@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView QuestionNo;
     ImageView animal;
     RadioGroup Optionlist;
     RadioButton optionselected,animalop1,animalop2,animalop3,animalop4;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             "Lion"
     };
     String[] currentoptionList={"","","",""};
-    int pickAnimalIndex,pickAnimalOptionIndex,optionvalue,previousoptionIndex=0,AnswerIndex,incrementor=0,Questions=0;
+    int pickAnimalIndex,pickAnimalOptionIndex,optionvalue,previousoptionIndex=0,AnswerIndex,incrementor=0,Questions=1;
     boolean checkduplicate;
     String Answer;
     Random randomAnimalSelector = new Random();
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        QuestionNo = findViewById(R.id.questionno);
+
         animal = findViewById(R.id.animalpicture);
 
         animalop1= findViewById(R.id.firstoption);
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         next = findViewById(R.id.nextbtn);
         mainfunctionality();
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,55 +79,58 @@ public class MainActivity extends AppCompatActivity {
     }
     //all process
     public void mainfunctionality(){
-//        if(Questions!=0){
-//            clearoptionlist();
-//        }
-        //randomly set image
-        pickAnimalIndex = randomAnimalSelector.nextInt(animalarray.length);
 
-        animal.setImageResource(animalarray[pickAnimalIndex]);
+        if(Questions!=11) {
+            String Qno_Counter = String.valueOf(Questions);
+            QuestionNo.setText(Qno_Counter);
 
-        //set current question answer
-        Answer=animalNames[pickAnimalIndex];
+            //randomly set image
 
-        //randomly set answer in option list
-        AnswerIndex =AnswerPosition.nextInt(currentoptionList.length);
-        currentoptionList[AnswerIndex] = Answer;
+            pickAnimalIndex = randomAnimalSelector.nextInt(animalarray.length);
 
-        //randomly set other three options in options list
-        while (incrementor!=4){
-            optionvalue = randomAnimalOptions();
-            //handle not to place at answer position
-            if(incrementor!=AnswerIndex) {
-                //handle duplication of options
-                if (checkoptions(optionvalue)) {
-                    checkduplicate = true;
-                    while (checkduplicate != false) {
-                        optionvalue = randomAnimalOptions();
-                        if (checkoptions(optionvalue) == false) {
-                            checkduplicate = false;
+            animal.setImageResource(animalarray[pickAnimalIndex]);
+
+            //set current question answer
+            Answer = animalNames[pickAnimalIndex];
+
+            //randomly set answer in option list
+            AnswerIndex = AnswerPosition.nextInt(currentoptionList.length);
+            currentoptionList[AnswerIndex] = Answer;
+
+            //randomly set other three options in options list
+            while (incrementor != 4) {
+                optionvalue = randomAnimalOptions();
+                //handle not to place at answer position
+                if (incrementor != AnswerIndex) {
+                    //handle duplication of options
+                    if (checkoptions(optionvalue)) {
+                        checkduplicate = true;
+                        while (checkduplicate != false) {
+                            optionvalue = randomAnimalOptions();
+                            if (checkoptions(optionvalue) == false) {
+                                checkduplicate = false;
+                            }
                         }
+                        currentoptionList[incrementor] = animalNames[optionvalue];
+                        checkduplicate = true;
+                    } else {
+                        currentoptionList[incrementor] = animalNames[optionvalue];
                     }
-                    currentoptionList[incrementor] = animalNames[optionvalue];
-                    checkduplicate = true;
                 }
-                else {
-                    currentoptionList[incrementor] = animalNames[optionvalue];
-                }
+                //loop counter
+                incrementor++;
             }
-            //loop counter
-            incrementor++;
+            //setting options on view
+            animalop1.setText(currentoptionList[0]);
+            animalop2.setText(currentoptionList[1]);
+            animalop3.setText(currentoptionList[2]);
+            animalop4.setText(currentoptionList[3]);
+            Questions++;
+            if (Questions != 0) {
+                clearoptionlist();
+            }
+            incrementor = 0;
         }
-        //setting options on view
-        animalop1.setText(currentoptionList[0]);
-        animalop2.setText(currentoptionList[1]);
-        animalop3.setText(currentoptionList[2]);
-        animalop4.setText(currentoptionList[3]);
-        Questions++;
-        if(Questions!=0){
-           clearoptionlist();
-        }
-        incrementor=0;
     }
 
     //clear options
