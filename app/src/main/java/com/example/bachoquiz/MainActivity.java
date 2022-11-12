@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     RadioButton optionselected,animalop1,animalop2,animalop3,animalop4;
     Button next;
 
+    String[] selectedOption={"","","","","","","","","",""};
+    String [] Answerlist ={"","","","","","","","","",""};
     Integer[] animalarray={
             R.drawable.dog,
             R.drawable.cat,
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             "Lion"
     };
     String[] currentoptionList={"","","",""};
-    int pickAnimalIndex,pickAnimalOptionIndex,optionvalue,previousoptionIndex=0,AnswerIndex,incrementor=0,Questions=1;
+    int pickAnimalIndex,pickAnimalOptionIndex,optionvalue,selectedoptionIndex=0,AnswerIndex,incrementor=0,Questions=1;
     boolean checkduplicate;
     String Answer;
     Random randomAnimalSelector = new Random();
@@ -130,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
                 clearoptionlist();
             }
             incrementor = 0;
+
+            //get selected option
+            selectedAnswer();
         }
     }
 
@@ -156,5 +161,21 @@ public class MainActivity extends AppCompatActivity {
         //return true or false
         return checkoptionflag;
     }
-
+    //get selected option
+    public  void selectedAnswer(){
+        if(animalop1.isChecked()){
+            selectedOption[selectedoptionIndex]=animalop1.getText().toString();
+        }
+        else if(animalop2.isChecked()){
+            selectedOption[selectedoptionIndex]=animalop2.getText().toString();
+        }
+        else if(animalop3.isChecked()){
+            selectedOption[selectedoptionIndex]=animalop3.getText().toString();
+        }
+        else if(animalop3.isChecked()){
+            selectedOption[selectedoptionIndex]=animalop4.getText().toString();
+        }
+        Answerlist[selectedoptionIndex]=Answer;
+        selectedoptionIndex++;
+    }
 }
