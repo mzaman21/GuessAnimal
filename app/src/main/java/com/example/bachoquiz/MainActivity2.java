@@ -41,9 +41,9 @@ public class MainActivity2 extends AppCompatActivity {
         MarkAns4=findViewById(R.id.YA4);
         MarkAns5=findViewById(R.id.YA5);
         MarkAns6=findViewById(R.id.YA6);
-        MarkAns7=findViewById(R.id.YA6);
-        MarkAns8=findViewById(R.id.YA7);
-        MarkAns9=findViewById(R.id.YA8);
+        MarkAns7=findViewById(R.id.YA7);
+        MarkAns8=findViewById(R.id.YA8);
+        MarkAns9=findViewById(R.id.YA9);
         MarkAns10=findViewById(R.id.YA10);
 
         ResultAns1=findViewById(R.id.R1);
@@ -59,7 +59,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         CorrectAns1.setText(correctanswerarray[i]);
         MarkAns1.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns1.setText("True");
         }
         else{
@@ -68,7 +68,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns2.setText(correctanswerarray[i]);
         MarkAns2.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns2.setText("True");
         }
         else{
@@ -77,7 +77,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns3.setText(correctanswerarray[i]);
         MarkAns3.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns3.setText("True");
         }
         else{
@@ -86,7 +86,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns4.setText(correctanswerarray[i]);
         MarkAns4.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns4.setText("True");
         }
         else{
@@ -95,7 +95,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns5.setText(correctanswerarray[i]);
         MarkAns5.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns5.setText("True");
         }
         else{
@@ -104,7 +104,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns6.setText(correctanswerarray[i]);
         MarkAns6.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns6.setText("True");
         }
         else{
@@ -113,7 +113,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns7.setText(correctanswerarray[i]);
         MarkAns7.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns7.setText("True");
         }
         else{
@@ -122,7 +122,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns8.setText(correctanswerarray[i]);
         MarkAns8.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns8.setText("True");
         }
         else{
@@ -131,7 +131,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns9.setText(correctanswerarray[i]);
         MarkAns9.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns9.setText("True");
         }
         else{
@@ -140,7 +140,7 @@ public class MainActivity2 extends AppCompatActivity {
         i++;
         CorrectAns10.setText(correctanswerarray[i]);
         MarkAns10.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i]==selectedoptionsarray[i]){
+        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
             ResultAns10.setText("True");
         }
         else{
