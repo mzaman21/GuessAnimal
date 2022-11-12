@@ -80,10 +80,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-        intent.putExtra("Selected_Option", selectedOption);
-        intent.putExtra("Answer_list",Answerlist);
-        this.startActivity(intent);
+
 
     }
     //all process
@@ -142,6 +139,13 @@ public class MainActivity extends AppCompatActivity {
 
             //get selected option
             selectedAnswer();
+        }
+        else{
+
+            Intent resultactivity = new Intent(MainActivity.this,MainActivity2.class);
+            resultactivity.putExtra("Selected_Option", selectedOption);
+            resultactivity.putExtra("Answer_list",Answerlist);
+            this.startActivity(resultactivity);
         }
     }
 

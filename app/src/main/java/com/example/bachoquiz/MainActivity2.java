@@ -10,15 +10,19 @@ public class MainActivity2 extends AppCompatActivity {
     TextView CorrectAns1,CorrectAns2,CorrectAns3,CorrectAns4,CorrectAns5,CorrectAns6,CorrectAns7,CorrectAns8,CorrectAns9,CorrectAns10
             ,MarkAns1,MarkAns2,MarkAns3,MarkAns4,MarkAns5,MarkAns6,MarkAns7,MarkAns8,MarkAns9,MarkAns10,ResultAns1,ResultAns2,ResultAns3
             ,ResultAns4,ResultAns5,ResultAns6,ResultAns7,ResultAns8,ResultAns9,ResultAns10;
+    String[] selectedoptionsarray;
+    String[] correctanswerarray;
 
-    String[] selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
-    String[] correctanswerarray = getIntent().getStringArrayExtra("Answer_list");
+
     int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
+        correctanswerarray = getIntent().getStringArrayExtra("Answer_list");
 
         CorrectAns1= findViewById(R.id.A1);
         CorrectAns2= findViewById(R.id.A2);
