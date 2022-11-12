@@ -45,7 +45,7 @@ public class MainActivity3 extends AppCompatActivity {
                 Intent resultactivity = new Intent(MainActivity3.this,MainActivity2.class);
                 resultactivity.putExtra("Selected_Option", selectedoptionsarray);
                 resultactivity.putExtra("Answer_list",correctanswerarray);
-                //this.startActivity(resultactivity);
+                MainActivity3.this.startActivity(resultactivity);
             }
         });
     }
