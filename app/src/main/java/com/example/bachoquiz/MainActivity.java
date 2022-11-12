@@ -146,21 +146,34 @@ public class MainActivity extends AppCompatActivity {
             //clear options and checked options
             if (Questions != 0) {
                 clearoptionlist();
+
+                //enables all
                 op1.setEnabled(true);
                 op2.setEnabled(true);
                 op3.setEnabled(true);
                 op4.setEnabled(true);
+
+                //default color
+                op1.setBackgroundColor(getResources().getColor(R.color.mycolorthree));
+                op2.setBackgroundColor(getResources().getColor(R.color.mycolorthree));
+                op3.setBackgroundColor(getResources().getColor(R.color.mycolorthree));
+                op4.setBackgroundColor(getResources().getColor(R.color.mycolorthree));
             }
             Questions++;
             incrementor = 0;
         }
         else{
 
-            //calling result activity
-            Intent resultactivity = new Intent(MainActivity.this,MainActivity2.class);
-            resultactivity.putExtra("Selected_Option", selectedOption);
-            resultactivity.putExtra("Answer_list",Answerlist);
-            this.startActivity(resultactivity);
+            Intent mainresultactivity = new Intent(MainActivity.this,MainActivity3.class);
+            mainresultactivity.putExtra("Selected_Option", selectedOption);
+            mainresultactivity.putExtra("Answer_list",Answerlist);
+            this.startActivity(mainresultactivity);
+//            //calling result activity
+//            Intent resultactivity = new Intent(MainActivity.this,MainActivity2.class);
+//            resultactivity.putExtra("Selected_Option", selectedOption);
+//            resultactivity.putExtra("Answer_list",Answerlist);
+//            this.startActivity(resultactivity);
+
         }
     }
 
@@ -204,11 +217,16 @@ public class MainActivity extends AppCompatActivity {
                 op1.setText("AnswerLocked");
                 Answerlist[selectedoptionIndex]=Answer;
                 selectedoptionIndex++;
-
+                //color changes
+                op1.setBackgroundColor(getResources().getColor(R.color.mycolor));
                 //disables other options
                 op2.setEnabled(false);
                 op3.setEnabled(false);
                 op4.setEnabled(false);
+                //color changes
+                op2.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op3.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op4.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
             }
         });
         op2.setOnClickListener(new View.OnClickListener() {
@@ -218,11 +236,16 @@ public class MainActivity extends AppCompatActivity {
                 op2.setText("Answer Locked");
                 Answerlist[selectedoptionIndex]=Answer;
                 selectedoptionIndex++;
-
+                //color changes
+                op2.setBackgroundColor(getResources().getColor(R.color.mycolor));
                 //disables other options
                 op3.setEnabled(false);
                 op4.setEnabled(false);
                 op1.setEnabled(false);
+                //color changes
+                op3.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op4.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op1.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
             }
         });
         op3.setOnClickListener(new View.OnClickListener() {
@@ -232,11 +255,16 @@ public class MainActivity extends AppCompatActivity {
                 op3.setText("Answer Locked");
                 Answerlist[selectedoptionIndex]=Answer;
                 selectedoptionIndex++;
-
+                //color changes
+                op3.setBackgroundColor(getResources().getColor(R.color.mycolor));
                 //disables other options
                 op1.setEnabled(false);
                 op2.setEnabled(false);
                 op4.setEnabled(false);
+                //color changes
+                op1.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op2.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op4.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
             }
         });
         op4.setOnClickListener(new View.OnClickListener() {
@@ -246,11 +274,17 @@ public class MainActivity extends AppCompatActivity {
                 op4.setText("Answer Locked");
                 Answerlist[selectedoptionIndex]=Answer;
                 selectedoptionIndex++;
+                //color changes
+                op4.setBackgroundColor(getResources().getColor(R.color.mycolor));
 
                 //disables other options
                 op1.setEnabled(false);
                 op2.setEnabled(false);
                 op3.setEnabled(false);
+                //color changes
+                op1.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op2.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
+                op3.setBackgroundColor(getResources().getColor(R.color.mycolortwo));
             }
         });
     }

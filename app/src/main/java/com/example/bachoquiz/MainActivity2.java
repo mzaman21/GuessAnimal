@@ -15,12 +15,13 @@ public class MainActivity2 extends AppCompatActivity {
     String[] correctanswerarray;
 
 
-    int i=0;
+    int i=0,rightcount=0,wrongcount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
 
         //getting arrays from main activity
         selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
