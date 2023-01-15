@@ -9,12 +9,17 @@ public class OnlineTest {
     private String Result;
 
 
-    public OnlineTest(int id, int optionNo, String correctAns, String givenAns, String result) {
+    public OnlineTest(int id,int Test_id ,int optionNo, String correctAns, String givenAns, String result) {
         this.id = id;
+        this.Test_Id = Test_Id;
         OptionNo = optionNo;
         CorrectAns = correctAns;
         GivenAns = givenAns;
         Result = result;
+    }
+
+    public OnlineTest() {
+
     }
 
     public int getId() {

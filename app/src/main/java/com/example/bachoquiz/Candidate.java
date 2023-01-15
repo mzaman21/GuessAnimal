@@ -9,6 +9,10 @@ public class Candidate {
         CandidateName = candidateName;
     }
 
+    public Candidate() {
+
+    }
+
     public int getId() {
         return id;
     }

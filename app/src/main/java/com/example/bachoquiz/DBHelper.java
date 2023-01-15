@@ -1,10 +1,14 @@
 package com.example.bachoquiz;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String Online_Test_Table = "Online_Test";
@@ -34,5 +38,75 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+    public void  addTest(Candidate CandidateTest){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Hash map, as we did in bundles
+        ContentValues cv= new ContentValues();
+
+        cv.put(Candidate_Name, CandidateTest.getCandidateName());
+
+        db.insert(Online_Test_Table, null, cv);
+        db.close();
+    }
+    public void  addReport(ArrayList<OnlineTest> Report){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Hash map, as we did in bundles
+        ContentValues cv= new ContentValues();
+
+        for(int i = 0 ; i < Report.size(); i++) {
+            cv.put(Option_No, Report.get(i).getOptionNo());
+            cv.put(Report_Test_Id, Report.get(i).getTest_Id());
+            cv.put(Correct_Ans, Report.get(i).getCorrectAns());
+            cv.put(Given_Ans, Report.get(i).getGivenAns());
+            cv.put(Result, Report.get(i).getResult());
+        }
+        db.insert(Online_Test_Table, null, cv);
+        db.close();
+    }
+    public ArrayList<OnlineTest> getTestReport(int Tid) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor Report_Cursor = db.rawQuery("SELECT * FROM Report WHERE Report_Test_Id=?" , new String[]{String.valueOf(Tid)});
+
+        ArrayList<OnlineTest> Test_Report = new ArrayList<>();
+
+        // moving our cursor to first position.
+        if (Report_Cursor.moveToFirst()) {
+            do {
+                OnlineTest Option = new OnlineTest();
+                Option.setOptionNo(Report_Cursor.getInt(0));
+                Option.setTest_Id(Report_Cursor.getInt(1));
+                Option.setCorrectAns(Report_Cursor.getString(2));
+                Option.setGivenAns(Report_Cursor.getString(3));
+                Option.setResult(Report_Cursor.getString(4));
+                Test_Report.add(Option);
+            } while (Report_Cursor.moveToNext());
+
+        }
+        Report_Cursor.close();
+        return Test_Report;
+    }
+    public Candidate getUserTest(int Tid) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor Candidate_Cursor = db.rawQuery("SELECT * FROM Online_Test WHERE Id=?" , new String[]{String.valueOf(Tid)});
+        Candidate candidate_test = new Candidate();
+        // moving our cursor to first position.
+        if (Candidate_Cursor.moveToFirst()) {
+            do {
+
+                candidate_test.setId(Candidate_Cursor.getInt(0));
+                candidate_test.setCandidateName(Candidate_Cursor.getString(1));
+
+            } while (Candidate_Cursor.moveToNext());
+
+        }
+        Candidate_Cursor.close();
+        return candidate_test;
     }
 }
