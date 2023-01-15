@@ -7,13 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
-
-    public static final String Online_Test_Table = "OnliestTestResult";
+    public static final String Online_Test_Table = "Online_Test";
+    public static final String Report_Table = "Report";
     public static final String Id = "Id";
     public static final String Option_No = "OptionNo";
     public static final String Correct_Ans = "CorrectAns";
     public static final String Given_Ans = "GivenAns";
     public static final String Result = "Result";
+    public static final String Report_Test_Id = "TestId";
+    public static final String Candidate_Name = "CandidateName";
 
     public DBHelper(Context context) {
         super(context, "OnlineTestDB.db",null, 4);
@@ -21,8 +23,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase TestResult) {
-        String createTableSTatement = "CREATE TABLE " + Online_Test_Table + "(" + Id + " Integer PRIMARY KEY AUTOINCREMENT, " + Option_No + " Int, " + Correct_Ans + " Text, " + Given_Ans + "Text"+ Result +" Text) ";
-        TestResult.execSQL(createTableSTatement);
+
+        String createTestTable = "CREATE TABLE " + Online_Test_Table + "(" + Id + " Integer PRIMARY KEY AUTOINCREMENT, " + Candidate_Name + "Text ) ";
+        TestResult.execSQL(createTestTable);
+
+        String createResultTable = "CREATE TABLE " + Report_Table + "(" + Id + " Integer PRIMARY KEY AUTOINCREMENT, "+ Report_Test_Id + "Int" + Option_No + " Int, " + Correct_Ans + " Text, " + Given_Ans + "Text"+ Result +" Text) ";
+        TestResult.execSQL(createResultTable);
     }
 
     @Override
