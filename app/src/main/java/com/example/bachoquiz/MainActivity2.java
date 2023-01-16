@@ -3,7 +3,11 @@ package com.example.bachoquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -11,9 +15,12 @@ public class MainActivity2 extends AppCompatActivity {
     TextView CorrectAns1,CorrectAns2,CorrectAns3,CorrectAns4,CorrectAns5,CorrectAns6,CorrectAns7,CorrectAns8,CorrectAns9,CorrectAns10
             ,MarkAns1,MarkAns2,MarkAns3,MarkAns4,MarkAns5,MarkAns6,MarkAns7,MarkAns8,MarkAns9,MarkAns10,ResultAns1,ResultAns2,ResultAns3
             ,ResultAns4,ResultAns5,ResultAns6,ResultAns7,ResultAns8,ResultAns9,ResultAns10;
-    String[] selectedoptionsarray;
-    String[] correctanswerarray;
+   // String[] selectedoptionsarray;
+ //   String[] correctanswerarray;
 
+    String[] selectedoptionsarray={"","","","","","","","","",""};
+    String [] correctanswerarray ={"","","","","","","","","",""};
+    String [] Resultarray ={"","","","","","","","","",""};
 
     int i=0,rightcount=0,wrongcount=0;
 
@@ -22,10 +29,28 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        DBHelper Dbhelper = new DBHelper(MainActivity2.this);
+
+        ArrayList<OnlineTest> Get_Test_Report = new ArrayList<>();
+        try {
+
+            int id = Dbhelper.get_Current_Test_id();
+            Get_Test_Report = Dbhelper.getTestReport(id);
+
+        }catch (Exception e){
+            Toast.makeText(MainActivity2.this, "Unable to get report", Toast.LENGTH_SHORT).show();
+        }
+
+        for (int j=0; j<selectedoptionsarray.length;j++){
+            selectedoptionsarray[j]= Get_Test_Report.get(j).getGivenAns();
+            correctanswerarray[j]= Get_Test_Report.get(j).getCorrectAns();
+            Resultarray[j]= Get_Test_Report.get(j).getResult();
+        }
+
 
         //getting arrays from main activity
-        selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
-        correctanswerarray = getIntent().getStringArrayExtra("Answer_list");
+       // selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
+       // correctanswerarray = getIntent().getStringArrayExtra("Answer_list");
 
         //map elements
         CorrectAns1= findViewById(R.id.A1);
@@ -64,93 +89,103 @@ public class MainActivity2 extends AppCompatActivity {
         //setting each options result
         CorrectAns1.setText(correctanswerarray[i]);
         MarkAns1.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns1.setText("True");
-        }
-        else{
-            ResultAns1.setText("False");
-        }
+        ResultAns1.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns1.setText("True");
+//        }
+//        else{
+//            ResultAns1.setText("False");
+//        }
         i++;
         CorrectAns2.setText(correctanswerarray[i]);
         MarkAns2.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns2.setText("True");
-        }
-        else{
-            ResultAns2.setText("False");
-        }
+        ResultAns2.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns2.setText("True");
+//        }
+//        else{
+//            ResultAns2.setText("False");
+//        }
         i++;
         CorrectAns3.setText(correctanswerarray[i]);
         MarkAns3.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns3.setText("True");
-        }
-        else{
-            ResultAns3.setText("False");
-        }
+        ResultAns3.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns3.setText("True");
+//        }
+//        else{
+//            ResultAns3.setText("False");
+//        }
         i++;
         CorrectAns4.setText(correctanswerarray[i]);
         MarkAns4.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns4.setText("True");
-        }
-        else{
-            ResultAns4.setText("False");
-        }
+        ResultAns4.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns4.setText("True");
+//        }
+//        else{
+//            ResultAns4.setText("False");
+//        }
         i++;
         CorrectAns5.setText(correctanswerarray[i]);
         MarkAns5.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns5.setText("True");
-        }
-        else{
-            ResultAns5.setText("False");
-        }
+        ResultAns5.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns5.setText("True");
+//        }
+//        else{
+//            ResultAns5.setText("False");
+//        }
         i++;
         CorrectAns6.setText(correctanswerarray[i]);
         MarkAns6.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns6.setText("True");
-        }
-        else{
-            ResultAns6.setText("False");
-        }
+        ResultAns6.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns6.setText("True");
+//        }
+//        else{
+//            ResultAns6.setText("False");
+//        }
         i++;
         CorrectAns7.setText(correctanswerarray[i]);
         MarkAns7.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns7.setText("True");
-        }
-        else{
-            ResultAns7.setText("False");
-        }
+        ResultAns7.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns7.setText("True");
+//        }
+//        else{
+//            ResultAns7.setText("False");
+//        }
         i++;
         CorrectAns8.setText(correctanswerarray[i]);
         MarkAns8.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns8.setText("True");
-        }
-        else{
-            ResultAns8.setText("False");
-        }
+        ResultAns8.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns8.setText("True");
+//        }
+//        else{
+//            ResultAns8.setText("False");
+//        }
         i++;
         CorrectAns9.setText(correctanswerarray[i]);
         MarkAns9.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns9.setText("True");
-        }
-        else{
-            ResultAns9.setText("False");
-        }
+        ResultAns9.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns9.setText("True");
+//        }
+//        else{
+//            ResultAns9.setText("False");
+//        }
         i++;
         CorrectAns10.setText(correctanswerarray[i]);
         MarkAns10.setText(selectedoptionsarray[i]);
-        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
-            ResultAns10.setText("True");
-        }
-        else{
-            ResultAns10.setText("False");
-        }
+        ResultAns10.setText(Resultarray[i]);
+//        if(correctanswerarray[i].equals(selectedoptionsarray[i])){
+//            ResultAns10.setText("True");
+//        }
+//        else{
+//            ResultAns10.setText("False");
+//        }
         i++;
     }
 }

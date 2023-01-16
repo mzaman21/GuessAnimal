@@ -13,6 +13,10 @@ public class Candidate {
 
     }
 
+    public Candidate(String Candidate) {
+        CandidateName = Candidate;
+    }
+
     public int getId() {
         return id;
     }

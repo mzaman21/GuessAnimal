@@ -109,4 +109,44 @@ public class DBHelper extends SQLiteOpenHelper {
         Candidate_Cursor.close();
         return candidate_test;
     }
+    public ArrayList<Integer> getTest_Ids() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor TestIds_Cursor = db.rawQuery("SELECT Id FROM Online_Test" , null);
+        Candidate Test_Ids = new Candidate();
+        ArrayList<Integer> IDs_List= new ArrayList<>();
+        // moving our cursor to first position.
+        if (TestIds_Cursor.moveToFirst()) {
+            do {
+                int id = 0;
+                id=TestIds_Cursor.getInt(0);
+                IDs_List.add(id);
+            } while (TestIds_Cursor.moveToNext());
+
+        }
+        TestIds_Cursor.close();
+        return IDs_List;
+    }
+    public int get_Current_Test_id() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor CTest_Id_Cursor = db.rawQuery("SELECT * FROM Online_Test ORDER BY Id DESC LIMIT 1" , null);
+
+        int id = 0;
+
+        // moving our cursor to first position.
+        if (CTest_Id_Cursor.moveToFirst()) {
+            do {
+
+                id = CTest_Id_Cursor.getInt(0);
+
+            } while (CTest_Id_Cursor.moveToNext());
+
+        }
+        CTest_Id_Cursor.close();
+        return id;
+    }
+
 }

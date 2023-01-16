@@ -11,7 +11,7 @@ public class OnlineTest {
 
     public OnlineTest(int id,int Test_id ,int optionNo, String correctAns, String givenAns, String result) {
         this.id = id;
-        this.Test_Id = Test_Id;
+        Test_Id = Test_id;
         OptionNo = optionNo;
         CorrectAns = correctAns;
         GivenAns = givenAns;
