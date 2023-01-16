@@ -33,6 +33,10 @@ public class MainActivity4 extends AppCompatActivity {
 
                     NewCandidate = new Candidate(CandidateName.getText().toString());
                     Dbhelper.addTest(NewCandidate);
+                    Toast.makeText(MainActivity4.this, "New Candidate"+NewCandidate.getCandidateName()+ "Added", Toast.LENGTH_SHORT).show();
+                    Intent Guess_Activity = new Intent(MainActivity4.this,MainActivity.class);
+                    MainActivity4.this.startActivity(Guess_Activity);
+
 
                 }catch (Exception e){
                     Toast.makeText(MainActivity4.this, "Candidate Not added", Toast.LENGTH_SHORT).show();

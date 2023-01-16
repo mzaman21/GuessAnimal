@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sharebtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
@@ -673,5 +674,29 @@
         app:layout_constraintEnd_toStartOf="@+id/YA5"
         app:layout_constraintStart_toEndOf="@+id/Q5"
         app:layout_constraintTop_toBottomOf="@+id/A4" />
+
+    <Button
+        android:id="@+id/Gitbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Git Repositry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sharebtn2" />
+
+    <Button
+        android:id="@+id/sharebtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Share Now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

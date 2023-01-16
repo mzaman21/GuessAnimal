@@ -2,8 +2,11 @@ package com.example.bachoquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,8 +18,7 @@ public class MainActivity2 extends AppCompatActivity {
     TextView CorrectAns1,CorrectAns2,CorrectAns3,CorrectAns4,CorrectAns5,CorrectAns6,CorrectAns7,CorrectAns8,CorrectAns9,CorrectAns10
             ,MarkAns1,MarkAns2,MarkAns3,MarkAns4,MarkAns5,MarkAns6,MarkAns7,MarkAns8,MarkAns9,MarkAns10,ResultAns1,ResultAns2,ResultAns3
             ,ResultAns4,ResultAns5,ResultAns6,ResultAns7,ResultAns8,ResultAns9,ResultAns10;
-   // String[] selectedoptionsarray;
- //   String[] correctanswerarray;
+  Button Share_Button,Git_Repo;
 
     String[] selectedoptionsarray={"","","","","","","","","",""};
     String [] correctanswerarray ={"","","","","","","","","",""};
@@ -187,5 +189,28 @@ public class MainActivity2 extends AppCompatActivity {
 //            ResultAns10.setText("False");
 //        }
         i++;
+
+        Share_Button = findViewById(R.id.Gitbtn);
+        Git_Repo = findViewById(R.id.Gitbtn);
+        Share_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+
+            }
+        });
+        Git_Repo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse("https://github.com/mzaman21/GuessAnimal.git");
+                Intent intent = new
+                        Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(intent);
+            }
+        });
     }
 }

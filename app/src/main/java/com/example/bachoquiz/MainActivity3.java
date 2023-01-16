@@ -31,8 +31,8 @@ public class MainActivity3 extends AppCompatActivity {
         reportbtn= findViewById(R.id.report);
 
         //getting arrays from main activity
-        selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
-        correctanswerarray = getIntent().getStringArrayExtra("Answer_list");
+       selectedoptionsarray = getIntent().getStringArrayExtra("Selected_Option");
+      correctanswerarray = getIntent().getStringArrayExtra("Answer_list");
         for(int i=0;i<correctanswerarray.length;i++){
             if(correctanswerarray[i].equals(selectedoptionsarray[i])){
                 rightcount++;
@@ -82,8 +82,8 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View view) {
                 //calling result activity
                 Intent resultactivity = new Intent(MainActivity3.this,MainActivity2.class);
-                resultactivity.putExtra("Selected_Option", selectedoptionsarray);
-                resultactivity.putExtra("Answer_list",correctanswerarray);
+//                resultactivity.putExtra("Selected_Option", selectedoptionsarray);
+//                resultactivity.putExtra("Answer_list",correctanswerarray);
                 MainActivity3.this.startActivity(resultactivity);
             }
         });

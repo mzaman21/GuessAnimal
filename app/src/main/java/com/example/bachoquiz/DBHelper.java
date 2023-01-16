@@ -28,16 +28,20 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase TestResult) {
 
-        String createTestTable = "CREATE TABLE " + Online_Test_Table + "(" + Id + " Integer PRIMARY KEY AUTOINCREMENT, " + Candidate_Name + "Text ) ";
+        String createTestTable = "CREATE TABLE " + Online_Test_Table + "(" + Id + " Integer PRIMARY KEY AUTOINCREMENT, " + Candidate_Name + " Text) ";
         TestResult.execSQL(createTestTable);
 
-        String createResultTable = "CREATE TABLE " + Report_Table + "(" + Id + " Integer PRIMARY KEY AUTOINCREMENT, "+ Report_Test_Id + "Int" + Option_No + " Int, " + Correct_Ans + " Text, " + Given_Ans + "Text"+ Result +" Text) ";
+        String createResultTable = "CREATE TABLE " + Report_Table + "(" + Id + " Integer PRIMARY KEY AUTOINCREMENT, "+ Report_Test_Id + " Int, " + Option_No + " Int, " + Correct_Ans + " Text, " + Given_Ans + " Text, "+ Result +" Text) ";
         TestResult.execSQL(createResultTable);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase myDatabase, int oldVersion, int newVersion) {
 
+        // If you need to add a column
+        if (newVersion > oldVersion) {
+            myDatabase.execSQL("ALTER TABLE Report_Table ADD COLUMN Report_Test_Id INTEGER");
+        }
     }
     public void  addTest(Candidate CandidateTest){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -51,26 +55,26 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
     public void  addReport(ArrayList<OnlineTest> Report){
-        SQLiteDatabase db = this.getWritableDatabase();
 
         //Hash map, as we did in bundles
-        ContentValues cv= new ContentValues();
-
+        SQLiteDatabase db = this.getWritableDatabase();
         for(int i = 0 ; i < Report.size(); i++) {
+
+            ContentValues cv= new ContentValues();
             cv.put(Option_No, Report.get(i).getOptionNo());
             cv.put(Report_Test_Id, Report.get(i).getTest_Id());
             cv.put(Correct_Ans, Report.get(i).getCorrectAns());
             cv.put(Given_Ans, Report.get(i).getGivenAns());
             cv.put(Result, Report.get(i).getResult());
+            db.insert(Report_Table, null, cv);
         }
-        db.insert(Online_Test_Table, null, cv);
         db.close();
     }
     public ArrayList<OnlineTest> getTestReport(int Tid) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor Report_Cursor = db.rawQuery("SELECT * FROM Report WHERE Report_Test_Id=?" , new String[]{String.valueOf(Tid)});
+        Cursor Report_Cursor = db.rawQuery("SELECT * FROM Report WHERE TestId=?" , new String[]{String.valueOf(Tid)});
 
         ArrayList<OnlineTest> Test_Report = new ArrayList<>();
 
@@ -78,11 +82,11 @@ public class DBHelper extends SQLiteOpenHelper {
         if (Report_Cursor.moveToFirst()) {
             do {
                 OnlineTest Option = new OnlineTest();
-                Option.setOptionNo(Report_Cursor.getInt(0));
+                Option.setOptionNo(Report_Cursor.getInt(2));
                 Option.setTest_Id(Report_Cursor.getInt(1));
-                Option.setCorrectAns(Report_Cursor.getString(2));
-                Option.setGivenAns(Report_Cursor.getString(3));
-                Option.setResult(Report_Cursor.getString(4));
+                Option.setCorrectAns(Report_Cursor.getString(3));
+                Option.setGivenAns(Report_Cursor.getString(4));
+                Option.setResult(Report_Cursor.getString(5));
                 Test_Report.add(Option);
             } while (Report_Cursor.moveToNext());
 
