@@ -192,6 +192,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         Share_Button = findViewById(R.id.Gitbtn);
         Git_Repo = findViewById(R.id.Gitbtn);
+
         Share_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,6 +204,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             }
         });
+
         Git_Repo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
